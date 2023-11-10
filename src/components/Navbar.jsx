@@ -1,22 +1,37 @@
 import styled from "styled-components";
-import {navLinks as links} from "../utils/links";
+import {navLinks as links, navIcons as icons} from "../utils/links";
+import {Link} from "react-router-dom";
 
 const Navbar = () => {
   return (
     <Wrapper>
       <nav>
         <div className="nav-center">
-          <h2>my project</h2>
-          <ul className="links">
-            {links.map((link) => {
-              const {id, name} = link;
-              return (
-                <a>
-                  <li>{name}</li>
-                </a>
-              );
-            })}
-          </ul>
+          <Link to="/">
+            <h2>Rishabh</h2>
+          </Link>
+          <div className="links-cont">
+            <ul className="links">
+              {links.map((item) => {
+                const {id, name, link} = item;
+                return (
+                  <Link to={link}>
+                    <li>{name}</li>
+                  </Link>
+                );
+              })}
+            </ul>
+            <ul className="links">
+              {icons.map((item) => {
+                const {id, name, link} = item;
+                return (
+                  <a href={link}>
+                    <li>{name}</li>
+                  </a>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </nav>
     </Wrapper>
@@ -38,11 +53,19 @@ const Wrapper = styled.div`
     height: 50px;
     border: 2px solid black;
   }
-  .links li {
-    display: inline-block;
+  .links-cont {
+    display: flex;
   }
-  .links a {
+  .links {
+    border: 2px solid black;
     margin: 0rem 1rem;
+
+    li {
+      display: inline-block;
+    }
+    a {
+      margin: 0rem 1rem;
+    }
   }
 `;
 
