@@ -1,3 +1,6 @@
+import {FiTwitter} from "react-icons/fi";
+import {FiGithub} from "react-icons/fi";
+import {AiOutlineLinkedin} from "react-icons/ai";
 const navLinks = [
   {
     id: 1,
@@ -29,17 +32,17 @@ const navLinks = [
 const navIcons = [
   {
     id: 1,
-    name: "twitter",
+    icon: <FiTwitter />,
     link: "",
   },
   {
     id: 2,
-    name: "github",
+    icon: <FiGithub />,
     link: "",
   },
   {
     id: 3,
-    name: "instagram",
+    icon: <AiOutlineLinkedin />,
     link: "",
   },
 ];

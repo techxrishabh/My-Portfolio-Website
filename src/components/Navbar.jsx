@@ -23,10 +23,10 @@ const Navbar = () => {
             </ul>
             <ul className="links">
               {icons.map((item) => {
-                const {id, name, link} = item;
+                const {id, icon, link} = item;
                 return (
                   <a href={link}>
-                    <li>{name}</li>
+                    <li>{icon}</li>
                   </a>
                 );
               })}
