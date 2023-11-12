@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import {navLinks as links, navIcons as icons} from "../utils/links";
 import {Link} from "react-router-dom";
+import {navLinks as links, navIcons as icons} from "../utils/links";
+import eye from "../assets/images/eye.png";
 
 const Navbar = () => {
   return (
@@ -8,7 +9,7 @@ const Navbar = () => {
       <nav>
         <div className="nav-center">
           <Link to="/">
-            <h2>Rishabh</h2>
+            <img src={eye} className="profile-pic" alt="priyanshu" />
           </Link>
           <div className="links-cont">
             <ul className="links">
@@ -48,23 +49,37 @@ const Wrapper = styled.div`
   .nav-center {
     display: flex;
     justify-content: space-between;
-    align-item: center;
-    width: 90vw;
-    height: 50px;
+    align-items: center;
+    width: 1100px;
+    height: 100px;
     border: 2px solid black;
+  }
+  .profile-pic {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
   }
   .links-cont {
     display: flex;
   }
   .links {
+    height: 50px;
     border: 2px solid black;
-    margin: 0rem 1rem;
+    margin: 0rem 0.55rem;
+    padding: 0rem 0.75rem;
+    background: var(--primary-clr);
+    display: flex;
+    align-item: center;
+    border-radius: 50px;
 
     li {
       display: inline-block;
     }
     a {
+      display: flex;
+      align-items: center;
       margin: 0rem 1rem;
+      color: var(--clr-white);
     }
   }
 `;

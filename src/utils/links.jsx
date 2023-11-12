@@ -1,6 +1,6 @@
 import {FiTwitter} from "react-icons/fi";
 import {FiGithub} from "react-icons/fi";
-import {AiOutlineLinkedin} from "react-icons/ai";
+import {PiLinkedinLogoBold} from "react-icons/pi";
 const navLinks = [
   {
     id: 1,
@@ -42,7 +42,7 @@ const navIcons = [
   },
   {
     id: 3,
-    icon: <AiOutlineLinkedin />,
+    icon: <PiLinkedinLogoBold />,
     link: "",
   },
 ];

@@ -7,7 +7,8 @@
 }
 
 :root {
-  --primary-color: red;
+  --primary-clr: #242428;
+  --clr-white: white;
   --max-width: 1170px;
   --fixed-width: 620px;
 }
@@ -15,4 +16,7 @@
 /*Global Variables*/
 ul {
   list-style-type: none;
+}
+a {
+  text-decoration: none;
 }
