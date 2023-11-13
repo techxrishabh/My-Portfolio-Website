@@ -1,5 +1,12 @@
+import {Navbar} from "../components";
+
 const ProjectsPage = () => {
-  return <h2>ProjectsPage</h2>;
+  return (
+    <>
+      <Navbar isHomePage={false} />
+      <h2>ProjectsPage</h2>
+    </>
+  );
 };
 
 export default ProjectsPage;

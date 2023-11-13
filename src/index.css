@@ -7,13 +7,23 @@
 }
 
 :root {
-  --primary-clr: #242428;
+  --primary-clr: #242426;
   --clr-white: white;
+  --clr-link-a: orange;
+  --clr-link-b: red;
+  --clr-link-c: blue;
+  --clr-link-d: pink;
+  --clr-link-e: green;
   --max-width: 1170px;
   --fixed-width: 620px;
 }
 
 /*Global Variables*/
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  background: black;
+  color: var(--clr-white);
+}
 ul {
   list-style-type: none;
 }
