@@ -1,3 +1,4 @@
+import {useState} from "react";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Link} from "react-router-dom";
@@ -24,8 +25,10 @@ const Navbar = ({isHomePage}) => {
                     to={link}
                     key={id}
                     className={({isActive, isPending}) =>
-                      isPending ? color : isActive ? color : "normal"
+                      isActive ? color : isPending ? color : ""
                     }
+                    // onMouseOver={(e) => e.currentTarget.classList.add(color)}
+                    // onMouseOut={(e) => e.currentTarget.classList.remove(color)}
                   >
                     <li>{name}</li>
                   </NavLink>
@@ -34,17 +37,11 @@ const Navbar = ({isHomePage}) => {
             </ul>
             <ul className="links">
               {icons.map((item) => {
-                const {id, icon, link, color} = item;
+                const {id, icon, link} = item;
                 return (
-                  <NavLink
-                    href={link}
-                    key={id}
-                    className={({isActive, isPending}) =>
-                      isPending ? color : isActive ? color : ""
-                    }
-                  >
+                  <a href={link} key={id} className="navbar-icon">
                     <li>{icon}</li>
-                  </NavLink>
+                  </a>
                 );
               })}
             </ul>
@@ -76,6 +73,7 @@ const Wrapper = styled.div`
   }
   .links-cont {
     display: flex;
+    overflow: hidden;
   }
   .links {
     height: 50px;
@@ -95,11 +93,16 @@ const Wrapper = styled.div`
       display: flex;
       align-items: center;
       margin: 0rem 1rem;
-
+      color: white;
+      transition: var(--transition);
       text-transform: capitalize;
     }
     .link-a {
       color: var(--clr-link-a);
+      border-bottom: 2px solid var(--clr-link-a);
+
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: none;
     }
     .link-b {
       color: var(--clr-link-b);
@@ -113,8 +116,9 @@ const Wrapper = styled.div`
     .link-e {
       color: var(--clr-link-e);
     }
-    .normal {
-      color: white;
+
+    .navbar-icon:hover {
+      color: var(--clr-link-a);
     }
   }
 `;
