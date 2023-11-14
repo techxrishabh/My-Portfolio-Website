@@ -16,6 +16,7 @@
   --clr-link-e: green;
   --max-width: 1170px;
   --fixed-width: 620px;
+  --transition: all 0.3s linear;
 }
 
 /*Global Variables*/
