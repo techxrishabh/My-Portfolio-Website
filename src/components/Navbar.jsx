@@ -6,6 +6,16 @@ import {navLinks as links, navIcons as icons} from "../utils/links";
 import eye from "../assets/images/eye.png";
 
 const Navbar = ({isHomePage}) => {
+  const [isActive, setIsActive] = useState(links[0].link);
+
+  const setLinkActive = (e, active_color) => {
+    e.currentTarget.style.color = active_color;
+  };
+  const setLinkInActive = (e, inactive_color, link) => {
+    if (isActive != link) {
+      e.currentTarget.style.color = inactive_color;
+    }
+  };
   return (
     <Wrapper check={`${isHomePage}`}>
       <nav>
@@ -19,19 +29,22 @@ const Navbar = ({isHomePage}) => {
           <div className="links-cont">
             <ul className="links">
               {links.map((item) => {
-                const {id, name, link, color} = item;
+                const {id, name, link, active_color, inactive_color} = item;
                 return (
-                  <NavLink
-                    to={link}
+                  <Link
                     key={id}
-                    className={({isActive, isPending}) =>
-                      isActive ? color : isPending ? color : ""
+                    style={
+                      isActive == link
+                        ? {color: active_color}
+                        : {color: inactive_color}
                     }
-                    // onMouseOver={(e) => e.currentTarget.classList.add(color)}
-                    // onMouseOut={(e) => e.currentTarget.classList.remove(color)}
+                    onClick={() => setIsActive(link)}
+                    onMouseOver={(e) => setLinkActive(e, active_color)}
+                    onMouseOut={(e) => setLinkInActive(e, inactive_color, link)}
+                    to={link}
                   >
                     <li>{name}</li>
-                  </NavLink>
+                  </Link>
                 );
               })}
             </ul>
