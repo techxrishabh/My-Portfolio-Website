@@ -44,19 +44,22 @@ const navIcons = [
     id: 1,
     icon: <FiTwitter />,
     link: "",
-    color: "link-a",
+    active_color: "var(--clr-link-a)",
+    inactive_color: "var(--clr-white)",
   },
   {
     id: 2,
     icon: <FiGithub />,
     link: "",
-    color: "link-a",
+    active_color: "var(--clr-link-a)",
+    inactive_color: "var(--clr-white)",
   },
   {
     id: 3,
     icon: <PiLinkedinLogoBold />,
     link: "",
-    color: "link-a",
+    active_color: "var(--clr-link-a)",
+    inactive_color: "var(--clr-white)",
   },
 ];
 

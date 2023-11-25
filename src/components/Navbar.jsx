@@ -1,71 +1,91 @@
-import {useState} from "react";
 import styled from "styled-components";
 import {NavLink} from "react-router-dom";
 import {Link} from "react-router-dom";
 import {navLinks as links, navIcons as icons} from "../utils/links";
 import eye from "../assets/images/eye.png";
+import black from "../assets/images/black_video_game.jpg";
+import {useDispatch, useSelector} from "react-redux";
+import {setPage} from "../features/navigation/navigationSlice";
 
-const Navbar = ({isHomePage}) => {
-  const [isActive, setIsActive] = useState(links[0].link);
+const Navbar = () => {
+  const page = useSelector((state) => state.navigation.page);
+  const dispatch = useDispatch();
 
   const setLinkActive = (e, active_color) => {
     e.currentTarget.style.color = active_color;
   };
-  const setLinkInActive = (e, inactive_color, link) => {
-    if (isActive != link) {
+  const setLinkInActive = (e, inactive_color, name) => {
+    if (page != name) {
       e.currentTarget.style.color = inactive_color;
     }
   };
   return (
-    <Wrapper check={`${isHomePage}`}>
-      <nav>
-        <div className="nav-center">
-          {!isHomePage && (
-            <Link to="/">
-              <img src={eye} className="profile-pic" alt="priyanshu" />
-            </Link>
-          )}
+    <Wrapper check={page}>
+      <header>
+        <nav>
+          <div className="nav-center">
+            {page != "home" && (
+              <Link to="/" onClick={() => dispatch(setPage("home"))}>
+                <img src={eye} className="profile-pic" alt="priyanshu" />
+              </Link>
+            )}
 
-          <div className="links-cont">
-            <ul className="links">
-              {links.map((item) => {
-                const {id, name, link, active_color, inactive_color} = item;
-                return (
-                  <Link
-                    key={id}
-                    style={
-                      isActive == link
-                        ? {color: active_color}
-                        : {color: inactive_color}
-                    }
-                    onClick={() => setIsActive(link)}
-                    onMouseOver={(e) => setLinkActive(e, active_color)}
-                    onMouseOut={(e) => setLinkInActive(e, inactive_color, link)}
-                    to={link}
-                  >
-                    <li>{name}</li>
-                  </Link>
-                );
-              })}
-            </ul>
-            <ul className="links">
-              {icons.map((item) => {
-                const {id, icon, link} = item;
-                return (
-                  <a href={link} key={id} className="navbar-icon">
-                    <li>{icon}</li>
-                  </a>
-                );
-              })}
-            </ul>
+            <div className="links-cont">
+              <ul className="links">
+                {links.map((item) => {
+                  const {id, name, link, active_color, inactive_color} = item;
+                  return (
+                    <Link
+                      key={id}
+                      style={
+                        page == name
+                          ? {color: active_color}
+                          : {color: inactive_color}
+                      }
+                      onClick={() => dispatch(setPage(name))}
+                      onMouseOver={(e) => setLinkActive(e, active_color)}
+                      onMouseOut={(e) =>
+                        setLinkInActive(e, inactive_color, name)
+                      }
+                      to={link}
+                    >
+                      <li>{name}</li>
+                    </Link>
+                  );
+                })}
+              </ul>
+              <ul className="links">
+                {icons.map((item) => {
+                  const {id, icon, link, active_color, inactive_color} = item;
+                  return (
+                    <a
+                      href={link}
+                      key={id}
+                      className="navbar-icon"
+                      onMouseOver={(e) => setLinkActive(e, active_color)}
+                      onMouseOut={(e) =>
+                        setLinkInActive(e, inactive_color, link)
+                      }
+                    >
+                      <li>{icon}</li>
+                    </a>
+                  );
+                })}
+              </ul>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </header>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
+  header {
+    background: url(${black});
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
   nav {
     display: flex;
     justify-content: center;
@@ -74,7 +94,7 @@ const Wrapper = styled.div`
   .nav-center {
     display: flex;
     justify-content: ${(props) =>
-      props.check === "true" ? "flex-end" : "space-between"};
+      props.check === "home" ? "flex-end" : "space-between"};
     align-items: center;
     width: 1100px;
     height: 100px;
@@ -109,29 +129,6 @@ const Wrapper = styled.div`
       color: white;
       transition: var(--transition);
       text-transform: capitalize;
-    }
-    .link-a {
-      color: var(--clr-link-a);
-      border-bottom: 2px solid var(--clr-link-a);
-
-      border-bottom-left-radius: 10px;
-      border-bottom-right-radius: none;
-    }
-    .link-b {
-      color: var(--clr-link-b);
-    }
-    .link-c {
-      color: var(--clr-link-c);
-    }
-    .link-d {
-      color: var(--clr-link-d);
-    }
-    .link-e {
-      color: var(--clr-link-e);
-    }
-
-    .navbar-icon:hover {
-      color: var(--clr-link-a);
     }
   }
 `;
